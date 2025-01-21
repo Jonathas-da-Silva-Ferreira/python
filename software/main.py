@@ -1,1 +1,0 @@
-from django import initializere_django
