@@ -21,4 +21,14 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
 ]
+
+ROOT_URLCONF = 'todo_project.uris'
+
+DATABSES = {
+    'default': {
+        'ENGINE' : 'django.db.backends.sqlite3',
+        'NAME' : os.path.join(BASE_DIR, 'db.sqlite3'), 
+    }
+}

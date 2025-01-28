@@ -1,8 +1,8 @@
 import os
 import sys
-from django_core.management import execute_from_command_line 
+from django.core.management import execute_from_command_line 
 
-def initialize_django(runserver=False, migrate_only=False):
+def initialize_django(runserver=False, migrate_only=False, env="development"):
     """"
     Inicializa o ambiente Django para o projeto
 
@@ -10,7 +10,7 @@ def initialize_django(runserver=False, migrate_only=False):
         runserver (bool): Define o servidor deve ser iniciado.
         migrate_only (bool): Define se as migrações devem ser rodadas. 
     """
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "todo_list.settings")
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", f"todo_project.settings.{env}" )
 
     try:
         if migrate_only:
