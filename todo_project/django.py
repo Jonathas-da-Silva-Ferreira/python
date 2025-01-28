@@ -1,6 +1,6 @@
 import os
 import sys
-from django_core.management import execute_from_command_line
+from django_core.management import execute_from_command_line 
 
 def initialize_django(runserver=False, migrate_only=False):
     """"
@@ -24,3 +24,4 @@ def initialize_django(runserver=False, migrate_only=False):
             print("Nenhuma ação definida.")
     except Exception as e:
         print(f"Erro ao executar django: {e}")
+        sys.exit(1)
