@@ -1,6 +1,6 @@
 import tkinter as tk
 import customtkinter as ctk
-import requests
+import requests # type: ignore
 
 API_URL = "http://127.0.0.1:8000/api/tasks/"
 
