@@ -61,3 +61,6 @@ class TaskApp(ctk.CTK):
 
             def delete_task(self):
                 """"Deletar tarefa"""
+                try:
+                    task_index = self.task_Listbox.curselection()[0]
+                    task_title = self.task_Listbox.get(task_title)
