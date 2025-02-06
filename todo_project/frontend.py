@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 import customtkinter as ctk
-import requests
+import requests # type: ignore 
 
 API_URL = "http://127.0.0.1:8000/api/tasks/"
 
@@ -43,6 +43,21 @@ class TaskApp(ctk.CTK):
         if response.status_code == 200:
             task = response.json()
             self.task_listbox.delete(0, tk.END)
-            for task in tasks:
+            for task in task:
                 status = "[✔]" if task['completed'] else "[]"
                 self.task_listbox.insert(tk.END, f"{status} {task['title']}")
+                
+    def add_task(self):
+        """"Adiocionar nova tarefa"""
+        task_title = self.task_input.get()
+        if task_title:
+            response = requests.post(API_URL, data={"title": task_title, "completed": False})
+            if requests.status_code == 201:
+                self.get_tasks()
+                self.task_input.delete(0, tk.END)
+                messagebox.showinfo("Tarefa Adicionada", "Tarefa adcionada com sucesso")
+            else:
+                messagebox.showerror("Erro", "Erro ao adicionar tarefa")
+
+            def delete_task(self):
+                """"Deletar tarefa"""
