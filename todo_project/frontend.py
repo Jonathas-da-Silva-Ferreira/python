@@ -36,7 +36,7 @@ class TaskApp(ctk.CTK):
 
         self.get_tasks()
 
-    def add_tasks(self):
+    def get_tasks(self):
         """
         Carregar as tarefas de API. """
         response = requests.get(API_URL)
@@ -52,15 +52,9 @@ class TaskApp(ctk.CTK):
         task_title = self.task_input.get()
         if task_title:
             response = requests.post(API_URL, data={"title": task_title, "completed": False})
-            if requests.status_code == 201:
+            if response.status_code == 201:
                 self.get_tasks()
                 self.task_input.delete(0, tk.END)
-                messagebox.showinfo("Tarefa Adicionada", "Tarefa adcionada com sucesso")
+                messagebox.showinfo("Sucesso", "Tarefa adicionada com sucesso")
             else:
-                messagebox.showerror("Erro", "Erro ao adicionar tarefa")
-
-            def delete_task(self):
-                """"Deletar tarefa"""
-                try:
-                    task_index = self.task_Listbox.curselection()[0]
-                    task_title = self.task_Listbox.get(task_title)
+                    messagebox.showerror("Erro", "Erro ao adicionar tarefa")
