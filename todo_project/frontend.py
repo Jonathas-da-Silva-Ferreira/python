@@ -57,4 +57,10 @@ class TaskApp(ctk.CTK):
                 self.task_input.delete(0, tk.END)
                 messagebox.showinfo("Sucesso", "Tarefa adicionada com sucesso")
             else:
-                    messagebox.showerror("Erro", "Erro ao adicionar tarefa")
+                    messagebox.showerror("Erro", "Erro ao adicionar tarefa.")
+            
+    def delete_task(self):
+        """Deletar tarefa"""
+        selected_index = self.tasl_listbox.curseLection()[0]
+        task_text = self.task_Listbox.get(selected_index)
+        task_title = task
