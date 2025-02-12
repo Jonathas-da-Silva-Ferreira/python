@@ -61,6 +61,18 @@ class TaskApp(ctk.CTK):
             
     def delete_task(self):
         """Deletar tarefa"""
+    try:
         selected_index = self.tasl_listbox.curseLection()[0]
         task_text = self.task_Listbox.get(selected_index)
-        task_title = task
+        task_title = task_text[4:] #Remover o status da tarefa
+        responser = requests.get(API_URL)
+        task_id = next(task['id'] for task in responser.json() if task['title'] == task_title)
+        requests.delete(f"{API_URL}{task_id}/")
+        self.get_task()
+        messagebox.showinfo("Sucesso", "Tarefa deletada com sucesso.")
+    except IndexError:
+        messagebox.showerror("Erro", "Selecione uma tarefa para deletar.")
+
+if __name__ == "__main__":
+    app = TaskApp()
+    app.mainloop()
